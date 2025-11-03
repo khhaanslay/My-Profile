@@ -45,7 +45,7 @@ body {
   color: white;
   border: none;
   position: relative;
-  box-shadow: inset 0 0 0 5px white; /* viền trắng đổ vào trong */
+  box-shadow: inset 0 0 0 3px white; /* viền trắng đổ vào trong */
   transition: 
     transform 0.25s ease,
     background-color 0.25s ease,

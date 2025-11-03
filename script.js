@@ -42,3 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   typeTitle();
 });
+// Lấy menu
+const navbar = document.querySelector('.navbar');
+
+// Lắng nghe scroll
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 5  ){ // nếu cuộn quá 50px
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
