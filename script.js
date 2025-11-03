@@ -1,55 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ----- Navbar scroll effect -----
   const navbar = document.querySelector(".navbar");
-
-  // Hiệu ứng đổi nền thanh navbar khi cuộn
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
   });
-});
 
-// Hiệu ứng tải trang + hiện nội dung chính
-window.addEventListener("load", () => {
+  // ----- Preloader effect -----
   const preloader = document.getElementById("preloader");
-  const main = document.getElementById("main-content");
+  const mainContent = document.getElementById("main-content");
 
-  // Sau 0.5 giây, bắt đầu ẩn preloader
-  setTimeout(() => {
-    preloader.classList.add("hide");
-
-    // Sau khi hiệu ứng fade-out xong (1.2s), hiện nội dung chính
+  window.addEventListener("load", () => {
+    // 0.5s sau khi load xong, ẩn preloader
     setTimeout(() => {
-      main.classList.add("show");
-    }, 1200);
-  }, 500);
-});
-let fullTitle = "khhaanslay";
-let current = "";
-let i = 0;
+      preloader.classList.add("hide"); // CSS fade-out
+      // 1.2s sau khi preloader ẩn, hiển thị nội dung chính
+      setTimeout(() => {
+        mainContent.classList.add("show"); // CSS fade-in
+      }, 1200);
+    }, 500);
+  });
 
-function typeTitle() {
-  if (i < fullTitle.length) {
-    current += fullTitle.charAt(i);
-    document.title = current;
-    i++;
-    setTimeout(typeTitle, 300);
-  } else {
-    setTimeout(() => {
-      i = 0;
-      current = "";
-      typeTitle();
-    }, 2000);
-  }
-}
-typeTitle();
-window.addEventListener("scroll", function() {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
+  // ----- Type effect cho title -----
+  const fullTitle = "khhaanslay";
+  let currentTitle = "";
+  let i = 0;
+
+  function typeTitle() {
+    if (i < fullTitle.length) {
+      currentTitle += fullTitle.charAt(i);
+      document.title = currentTitle;
+      i++;
+      setTimeout(typeTitle, 300);
     } else {
-      navbar.classList.remove("scrolled");
+      // Xóa dần và bắt đầu lại sau 2s
+      setTimeout(() => {
+        currentTitle = "";
+        i = 0;
+        typeTitle();
+      }, 2000);
     }
+  }
+  typeTitle();
 });
